@@ -102,6 +102,36 @@ namespace finance_manager.Data
             return new SQLiteConnection($"Data Source={dbPath};Version=3;");
         }
 
+        public static List<Product> FetchAllProducts()
+        {
+            List<Product> products = new List<Product>();
+
+            using (var connection = new SQLiteConnection($"Data Source={ProductsDbPath};Version=3;"))
+            {
+                connection.Open();
+                string query = "SELECT Id, Name, Price, TaxPercentage FROM Products;";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var product = new Product
+                            {
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Price = reader.GetDecimal(2),
+                                TaxPercentage = reader.GetDecimal(3)
+                            };
+                            products.Add(product);
+                        }
+                    }
+                }
+            }
+
+            return products;
+        }
+
         public static void InsertProduct(Product product)
         {
             using (var connection = GetConnection("products"))

@@ -33,6 +33,8 @@
 
         <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="2"/>
 
+       
+
         <DockPanel x:Name="addProductDockPanel" Visibility="Collapsed" Height="120" Width="700">
             <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Stretch">
             <!-- Border surrounding the DockPanel -->
@@ -78,6 +80,7 @@
                         <TextBox x:Name="ProductTaxTextBox" Style="{StaticResource ProductTextBoxStyle}" Grid.Column="2"
                                  Width="130"/>
                     </Grid>
+                    
                     <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                         <Button Content="Add Product" HorizontalAlignment="Left" Margin="25, 0, 0, 0" Padding="10" Width="100"
                                 Click="ModalAddProduct_Click"/>
@@ -87,6 +90,12 @@
                 </Grid>
             </Border>
         </DockPanel>
+
+        <StackPanel x:Name="LabelStack" Orientation="Horizontal" HorizontalAlignment="Stretch" Width="700">
+            <Label Width="45" Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="0"/>
+            <Label Width="40" Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="165, 0, 0, 0" Grid.Column="1"/>
+            <Label Width="30" Content="Tax:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="65, 0, 0, 0" Grid.Column="2"/>
+        </StackPanel>
 
         <StackPanel x:Name="ProductList" Orientation="Vertical" Width="700" Height="500">
         </StackPanel>

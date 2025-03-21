@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using finance_manager.Views;
 using finance_manager.Data;
+using finance_manager.Models;
 
 namespace finance_manager
 {
