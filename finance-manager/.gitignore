@@ -1,4 +1,4 @@
 .vs/
-dashboard.db
-expenses.db
-products.db
+.finance-manager/dashboard.db
+.finance-manager/expenses.db
+.finance-manager/products.db
