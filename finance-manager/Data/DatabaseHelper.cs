@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using finance_manager.Models;
+using System.Threading;
 
 namespace finance_manager.Data
 {
     internal class DatabaseHelper
     {
-        private static readonly string AppFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "finance-manager");
+        private static readonly string AppFolder = Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\"));
 
         private static readonly string ProductsDbPath = Path.Combine(AppFolder, "products.db");
         private static readonly string ExpensesDbPath = Path.Combine(AppFolder, "expenses.db");
@@ -19,10 +20,7 @@ namespace finance_manager.Data
 
         public static void InitializeDatabases()
         {
-            if (!Directory.Exists(AppFolder))
-            {
-                Directory.CreateDirectory(AppFolder);
-            }
+            System.Diagnostics.Debug.WriteLine(AppFolder);
 
             CreateDatabaseIfNotExists(ProductsDbPath, @"
                 CREATE TABLE IF NOT EXISTS Products (
@@ -48,6 +46,8 @@ namespace finance_manager.Data
                     Expenses REAL NOT NULL,
                     Taxes REAL NOT NULL
                 );");
+
+
         }
 
         private static void CreateDatabaseIfNotExists(string dbPath, string createTableQuery)
@@ -60,6 +60,30 @@ namespace finance_manager.Data
                     using (var command = new SQLiteCommand(createTableQuery, connection))
                     {
                         command.ExecuteNonQuery();
+                    }
+                }
+            }
+            else
+            {
+                // Database file exists, check if the table exists
+                using (var connection = new SQLiteConnection($"Data Source={dbPath};Version=3;"))
+                {
+                    connection.Open();
+
+                    // Query to check if the table exists
+                    string checkTableQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name='Products';";  // Modify table name accordingly
+                    using (var command = new SQLiteCommand(checkTableQuery, connection))
+                    {
+                        var result = command.ExecuteScalar();
+
+                        // If result is null, the table doesn't exist, create the table
+                        if (result == null)
+                        {
+                            using (var createCommand = new SQLiteCommand(createTableQuery, connection))
+                            {
+                                createCommand.ExecuteNonQuery();
+                            }
+                        }
                     }
                 }
             }

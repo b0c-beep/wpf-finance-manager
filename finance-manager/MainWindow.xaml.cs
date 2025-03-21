@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using finance_manager.Views;
+using finance_manager.Data;
 
 namespace finance_manager
 {
@@ -24,6 +25,7 @@ namespace finance_manager
         public MainWindow()
         {
             InitializeComponent();
+            DatabaseHelper.InitializeDatabases();
             MainFrame.NavigationService.Navigate(new Views.DashboardPage());
         }
 
