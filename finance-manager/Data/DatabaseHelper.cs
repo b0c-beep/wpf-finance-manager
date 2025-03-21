@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using finance_manager.Models;
 
 namespace finance_manager.Data
 {
     internal class DatabaseHelper
     {
-        private static readonly string AppFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FinanceManager");
+        private static readonly string AppFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "finance-manager");
 
         private static readonly string ProductsDbPath = Path.Combine(AppFolder, "products.db");
         private static readonly string ExpensesDbPath = Path.Combine(AppFolder, "expenses.db");
@@ -75,6 +76,22 @@ namespace finance_manager.Data
             };
 
             return new SQLiteConnection($"Data Source={dbPath};Version=3;");
+        }
+
+        public static void InsertProduct(Product product)
+        {
+            using (var connection = GetConnection("products"))
+            {
+                connection.Open();
+                string query = "INSERT INTO Products (Name, Price, TaxPercentage) VALUES (@Name, @Price, @TaxPercentage)";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", product.Name);
+                    command.Parameters.AddWithValue("@Price", product.Price);
+                    command.Parameters.AddWithValue("@TaxPercentage", product.TaxPercentage);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

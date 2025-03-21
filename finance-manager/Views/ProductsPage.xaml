@@ -8,7 +8,87 @@
       d:DesignHeight="600" d:DesignWidth="700"
       Title="ProductsPage">
 
-    <Grid Background="AliceBlue">
-        <Label Content="Products" FontFamily="Arial" FontSize="40"/>
-    </Grid>
+    <Page.Resources>
+        <Style x:Key="ProductTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="7"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0, 0, 0, 0"/>
+        </Style>
+    </Page.Resources>
+
+    <StackPanel Orientation="Vertical" Background="AliceBlue"
+                Width="700" Height="600">
+        <DockPanel Width="700" Height="100" HorizontalAlignment="Stretch">
+            <Label Content="Products" FontSize="24" HorizontalAlignment="Left" Margin="20" Height="50" VerticalAlignment="Center"/>
+            <Button HorizontalAlignment="Right" Tag="addProductButton" Content="Add Product" Margin="30"
+                    Click="AddProduct_Click" Height="40" Padding="10"/>
+        </DockPanel>
+
+        <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="2"/>
+
+        <DockPanel x:Name="addProductDockPanel" Visibility="Collapsed" Height="120" Width="700">
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Stretch">
+            <!-- Border surrounding the DockPanel -->
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <!-- For labels -->
+                        <RowDefinition Height="50"/>
+                        <!-- For textboxes -->
+                        <RowDefinition Height="40"/>
+                        <!-- For buttons -->
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                          Height="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="0"/>
+                        <Label Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="1"/>
+                        <Label Content="Tax:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="2"/>
+                    </Grid>
+                    <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <!-- Adjusting widths to account for the margin -->
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Product Name TextBox in the first column -->
+                        <TextBox x:Name="ProductNameTextBox" Style="{StaticResource ProductTextBoxStyle}" Grid.Column="0"
+                                 Width="300"/>
+
+                        <!-- Product Price TextBox in the second column -->
+                        <TextBox x:Name="ProductPriceTextBox" Style="{StaticResource ProductTextBoxStyle}" Grid.Column="1"
+                                 Width="130"/>
+
+                        <!-- Product Tax TextBox in the third column -->
+                        <TextBox x:Name="ProductTaxTextBox" Style="{StaticResource ProductTextBoxStyle}" Grid.Column="2"
+                                 Width="130"/>
+                    </Grid>
+                    <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Button Content="Add Product" HorizontalAlignment="Left" Margin="25, 0, 0, 0" Padding="10" Width="100"
+                                Click="ModalAddProduct_Click"/>
+                        <Button Content="Cancel" HorizontalAlignment="Right" Margin="0, 0, 23, 0" Padding="10" Width="100"
+                                Click="ModalCancelProduct_Click"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </DockPanel>
+
+        <StackPanel x:Name="ProductList" Orientation="Vertical" Width="700" Height="500">
+        </StackPanel>
+    </StackPanel>
 </Page>
