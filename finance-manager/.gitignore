@@ -1,6 +1,7 @@
 .vs/
-.finance-manager/dashboard.db
 .finance-manager/expenses.db
-.finance-manager/products.
+./finance-manager/profits.db
+./finance-manager/costs.db
+.finance-manager/products.db
 .finance-manager/obj
 .finance-manager/bin
