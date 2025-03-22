@@ -147,5 +147,77 @@ namespace finance_manager.Data
                 }
             }
         }
+
+        // Delete a product by ID
+        public static bool DeleteProduct(int productId)
+        {
+            using (var connection = GetConnection("products"))
+            {
+                connection.Open();
+                string query = "DELETE FROM Products WHERE Id = @Id";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", productId);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0; // Returns true if deletion was successful
+                }
+            }
+        }
+
+        // Update a product by ID
+        public static bool UpdateProduct(int productId, string newName, decimal newPrice, decimal newTax)
+        {
+            using (var connection = GetConnection("products"))
+            {
+                connection.Open();
+                string query = "UPDATE Products SET Name = @Name, Price = @Price, TaxPercentage = @TaxPercentage WHERE Id = @Id";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", productId);
+                    command.Parameters.AddWithValue("@Name", newName);
+                    command.Parameters.AddWithValue("@Price", newPrice);
+                    command.Parameters.AddWithValue("@TaxPercentage", newTax);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0; // Returns true if update was successful
+                }
+            }
+        }
+
+        // Get a product by ID
+        public static Product GetProductById(int productId)
+        {
+            using (var connection = GetConnection("products"))
+            {
+                connection.Open();
+                string query = "SELECT Id, Name, Price, TaxPercentage FROM Products WHERE Id = @Id;";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", productId);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())  // Check if the product is found
+                        {
+                            return new Product
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                                TaxPercentage = reader.GetDecimal(reader.GetOrdinal("TaxPercentage"))
+                            };
+                        }
+                        else
+                        {
+                            return null;  // Return null if no product is found with the given ID
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
