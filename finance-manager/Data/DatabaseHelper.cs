@@ -17,7 +17,8 @@ namespace finance_manager.Data
 
         private static readonly string ProductsDbPath = Path.Combine(AppFolder, "products.db");
         private static readonly string ExpensesDbPath = Path.Combine(AppFolder, "expenses.db");
-        private static readonly string DashboardDbPath = Path.Combine(AppFolder, "dashboard.db");
+        private static readonly string ProfitsDbPath = Path.Combine(AppFolder, "profits.db");
+        private static readonly string CostsDbPath = Path.Combine(AppFolder, "costs.db");
 
         public static void InitializeDatabases()
         {
@@ -39,13 +40,22 @@ namespace finance_manager.Data
                     TaxPercentage REAL NOT NULL
                 );");
 
-            CreateDatabaseIfNotExists(DashboardDbPath, @"
-                CREATE TABLE IF NOT EXISTS MonthlyFinances (
+            CreateDatabaseIfNotExists(ProfitsDbPath, @"
+                CREATE TABLE IF NOT EXISTS Profits (
                     Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Date TEXT NOT NULL,
-                    Income REAL NOT NULL,
-                    Expenses REAL NOT NULL,
-                    Taxes REAL NOT NULL
+                    Name TEXT NOT NULL,
+                    Price REAL NOT NULL,
+                    TaxPercentage REAL NOT NULL,
+                    Date TEXT NOT NULL
+                );");
+
+            CreateDatabaseIfNotExists(CostsDbPath, @"
+                CREATE TABLE IF NOT EXISTS Costs (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Name TEXT NOT NULL,
+                    Price REAL NOT NULL,
+                    TaxPercentage REAL NOT NULL,
+                    Date TEXT NOT NULL
                 );");
 
 
@@ -61,7 +71,8 @@ namespace finance_manager.Data
             {
                 "products" => "Products",
                 "expenses" => "Expenses",
-                "dashboard" => "Dashboard",
+                "profits" => "Profits",
+                "costs" => "Costs",
                 _ => throw new ArgumentException("Unknown database type.")
             };
 
@@ -108,7 +119,8 @@ namespace finance_manager.Data
             {
                 "products" => ProductsDbPath,
                 "expenses" => ExpensesDbPath,
-                "dashboard" => DashboardDbPath,
+                "profits" => ProfitsDbPath,
+                "costs" => CostsDbPath,
                 _ => throw new ArgumentException("Invalid database name")
             };
 
