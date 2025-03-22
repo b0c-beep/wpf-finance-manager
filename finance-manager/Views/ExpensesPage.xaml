@@ -8,7 +8,97 @@
       d:DesignHeight="600" d:DesignWidth="700"
       Title="ExpensesPage">
 
-    <Grid Background="AliceBlue">
-        <Label Content="Expenses" FontFamily="Arial" FontSize="40"/>
-    </Grid>
+    <Page.Resources>
+        <Style x:Key="ExpenseTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="7"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0, 0, 0, 0"/>
+        </Style>
+    </Page.Resources>
+
+    <StackPanel Orientation="Vertical" Background="AliceBlue"
+            Width="700" Height="600">
+        <DockPanel Width="700" Height="100" HorizontalAlignment="Stretch">
+            <Label Content="Expenses" FontSize="24" HorizontalAlignment="Left" Margin="20" Height="50" VerticalAlignment="Center"/>
+            <Button HorizontalAlignment="Right" Tag="addExpenseButton" Content="Add Expense" Margin="30"
+                Click="AddExpense_Click" Height="40" Padding="10"/>
+        </DockPanel>
+
+        <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="2"/>
+
+
+
+        <DockPanel x:Name="addExpenseDockPanel" Visibility="Collapsed" Height="120" Width="700">
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Stretch">
+                <!-- Border surrounding the DockPanel -->
+                <Grid HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <!-- For labels -->
+                        <RowDefinition Height="50"/>
+                        <!-- For textboxes -->
+                        <RowDefinition Height="40"/>
+                        <!-- For buttons -->
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                      Height="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="0"/>
+                        <Label Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="1"/>
+                        <Label Content="Tax:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="2"/>
+                    </Grid>
+                    <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <!-- Adjusting widths to account for the margin -->
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Expense Name TextBox in the first column -->
+                        <TextBox x:Name="ExpenseNameTextBox" Style="{StaticResource ExpenseTextBoxStyle}" Grid.Column="0"
+                             Width="300"/>
+
+                        <!-- Expense Price TextBox in the second column -->
+                        <TextBox x:Name="ExpensePriceTextBox" Style="{StaticResource ExpenseTextBoxStyle}" Grid.Column="1"
+                             Width="130"/>
+
+                        <!-- Expense Tax TextBox in the third column -->
+                        <TextBox x:Name="ExpenseTaxTextBox" Style="{StaticResource ExpenseTextBoxStyle}" Grid.Column="2"
+                             Width="130"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <Button Content="Add Expense" HorizontalAlignment="Left" Margin="25, 0, 0, 0" Padding="10" Width="100"
+                            Click="ModalAddExpense_Click"/>
+                        <Button Content="Cancel" HorizontalAlignment="Right" Margin="0, 0, 23, 0" Padding="10" Width="100"
+                            Click="ModalCancelExpense_Click"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </DockPanel>
+
+        <StackPanel x:Name="LabelStack" Orientation="Horizontal" HorizontalAlignment="Stretch" Width="700">
+            <Label Width="45" Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="0"/>
+            <Label Width="40" Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="165, 0, 0, 0" Grid.Column="1"/>
+            <Label Width="30" Content="Tax:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="65, 0, 0, 0" Grid.Column="2"/>
+        </StackPanel>
+        <ScrollViewer Height="450" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <VirtualizingStackPanel x:Name="ExpenseList" Orientation="Vertical" Width="700" Height="500">
+            </VirtualizingStackPanel>
+        </ScrollViewer>
+    </StackPanel>
 </Page>

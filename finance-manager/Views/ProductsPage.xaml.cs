@@ -284,7 +284,7 @@ namespace finance_manager.Views
 
             List<Product> products = DatabaseHelper.FetchAllProducts();
             LoadProducts(products);
-            LabelStack.Visibility = Visibility.Collapsed;
+            //LabelStack.Visibility = Visibility.Collapsed;
 
             addProductDockPanel.Visibility = Visibility.Collapsed;
             ProductList.Height += (addProductDockPanel.Height + 2);
