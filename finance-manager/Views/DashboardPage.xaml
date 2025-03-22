@@ -8,9 +8,40 @@
       d:DesignHeight="600" d:DesignWidth="700"
       Title="DashboardPage">
 
-    <Grid Background="AliceBlue">
-        <Label
-            FontFamily="Arial" FontSize="40"
-            >Dashboard</Label>
-    </Grid>
+    <StackPanel Orientation="Vertical" Background="AliceBlue" Height="600" Width="700">
+        <Label x:Name="dateLabel" Width="700" Height="30"></Label>
+        <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="1"/>
+        <StackPanel Orientation="Horizontal" Width="700" Height="480">
+            <StackPanel x:Name="ProfitStack" Orientation="Vertical" Width="347">
+                <Label Height="25" HorizontalAlignment="Center">Profits</Label>
+                <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
+                <StackPanel x:Name="addProfitPanel" Orientation="Horizontal" Height="40">
+                    <ComboBox x:Name="profitDropDown" Width="250" Height="25" Margin="5, 0, 10, 0">
+                        
+                    </ComboBox>
+                    <Button x:Name="addProfitButton" Height="25" Width="70" HorizontalAlignment="Right"
+                            Click="addProfitButton_Click">Add Profit</Button>
+                </StackPanel>
+                <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
+            </StackPanel>
+            <Line Stroke="Black" X1="0" X2="0" Y1="0" Y2="500" StrokeThickness="1"/>
+            <StackPanel x:Name="CostStack" Orientation="Vertical" Width="347">
+                <Label Height="25" HorizontalAlignment="Center">Costs</Label>
+                <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
+                <StackPanel x:Name="addCostsPanel" Orientation="Horizontal" Height="40">
+                    <ComboBox x:Name="costDropDown" Width="250" Height="25" Margin="5, 0, 10, 0">
+
+                    </ComboBox>
+                    <Button x:Name="addCostButton" Height="25" Width="70" HorizontalAlignment="Right"
+                            Click="addCostButton_Click">Add Cost</Button>
+                </StackPanel>
+                <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
+            </StackPanel>
+        </StackPanel>
+        <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="1"/>
+        <StackPanel x:Name="footerStack" Orientation="Horizontal" Height="70">
+            
+        </StackPanel>
+    </StackPanel>
+    
 </Page>
