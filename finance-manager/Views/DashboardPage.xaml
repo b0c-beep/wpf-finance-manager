@@ -50,7 +50,8 @@
         </StackPanel>
         <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="1"/>
         <StackPanel x:Name="footerStack" Orientation="Horizontal" Height="70">
-            
+            <Button x:Name="excelExportButton" Width="100" Height="30" Margin="20, 0, 0, 20"
+                    Click="exportToExcel_Click">Export to Excel</Button>
         </StackPanel>
     </StackPanel>
     

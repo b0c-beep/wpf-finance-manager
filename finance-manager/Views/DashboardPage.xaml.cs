@@ -251,5 +251,10 @@ namespace finance_manager.Views
             DatabaseHelper.DeleteCost(costId);
             loadCosts(DatabaseHelper.FetchAllCosts());
         }
+
+        private void exportToExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelHelper.ProfitAndCostToExcel();
+        }
     }
 }
