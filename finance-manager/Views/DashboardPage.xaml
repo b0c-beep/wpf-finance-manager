@@ -23,6 +23,11 @@
                             Click="addProfitButton_Click">Add Profit</Button>
                 </StackPanel>
                 <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
+                <ScrollViewer Height="400" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel x:Name="profitList" Orientation="Vertical" Width="347" Height="410">
+
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>
             <Line Stroke="Black" X1="0" X2="0" Y1="0" Y2="500" StrokeThickness="1"/>
             <StackPanel x:Name="CostStack" Orientation="Vertical" Width="347">
@@ -36,6 +41,11 @@
                             Click="addCostButton_Click">Add Cost</Button>
                 </StackPanel>
                 <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
+                <ScrollViewer Height="400" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel x:Name="costList" Orientation="Vertical" Width="347" Height="410">
+
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>
         </StackPanel>
         <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="1"/>

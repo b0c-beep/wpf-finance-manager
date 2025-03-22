@@ -22,7 +22,7 @@ namespace finance_manager.Data
 
         public static void InitializeDatabases()
         {
-            System.Diagnostics.Debug.WriteLine(AppFolder);
+            //System.Diagnostics.Debug.WriteLine(AppFolder);
 
             CreateDatabaseIfNotExists(ProductsDbPath, @"
                 CREATE TABLE IF NOT EXISTS Products (
@@ -357,6 +357,134 @@ namespace finance_manager.Data
                             return null;  // Return null if no expense is found with the given ID
                         }
                     }
+                }
+            }
+        }
+
+        public static List<Profit> FetchAllProfits()
+        {
+            List<Profit> profits = new List<Profit>();
+
+            using (var connection = new SQLiteConnection($"Data Source={ProfitsDbPath};Version=3;"))
+            {
+                connection.Open();
+                string query = "SELECT Id, Name, Price, TaxPercentage, Date FROM Profits;";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var profit = new Profit
+                            {
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Price = reader.GetDecimal(2),
+                                TaxPercentage = reader.GetDecimal(3),
+                                Date = reader.GetString(4)
+                            };
+                            profits.Add(profit);
+                        }
+                    }
+                }
+            }
+
+            return profits;
+        }
+
+        public static List<Cost> FetchAllCosts()
+        {
+            List<Cost> costs = new List<Cost>();
+
+            using (var connection = new SQLiteConnection($"Data Source={CostsDbPath};Version=3;"))
+            {
+                connection.Open();
+                string query = "SELECT Id, Name, Price, TaxPercentage, Date FROM Costs;";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var cost = new Cost
+                            {
+                                Id = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Price = reader.GetDecimal(2),
+                                TaxPercentage = reader.GetDecimal(3),
+                                Date = reader.GetString(4)
+                            };
+                            costs.Add(cost);
+                        }
+                    }
+                }
+            }
+
+            return costs;
+        }
+
+        public static void InsertProfit(Profit profit)
+        {
+            using (var connection = GetConnection("profits"))
+            {
+                connection.Open();
+                string query = "INSERT INTO Profits (Name, Price, TaxPercentage, Date) VALUES (@Name, @Price, @TaxPercentage, @Date)";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", profit.Name);
+                    command.Parameters.AddWithValue("@Price", profit.Price);
+                    command.Parameters.AddWithValue("@TaxPercentage", profit.TaxPercentage);
+                    command.Parameters.AddWithValue("@Date", profit.Date);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void InsertCost(Cost cost)
+        {
+            using (var connection = GetConnection("costs"))
+            {
+                connection.Open();
+                string query = "INSERT INTO Costs (Name, Price, TaxPercentage, Date) VALUES (@Name, @Price, @TaxPercentage, @Date)";
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", cost.Name);
+                    command.Parameters.AddWithValue("@Price", cost.Price);
+                    command.Parameters.AddWithValue("@TaxPercentage", cost.TaxPercentage);
+                    command.Parameters.AddWithValue("@Date", cost.Date);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static bool DeleteProfit(int profitId)
+        {
+            using (var connection = GetConnection("profits"))
+            {
+                connection.Open();
+                string query = "DELETE FROM Profits WHERE Id = @Id";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", profitId);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0; // Returns true if deletion was successful
+                }
+            }
+        }
+
+        public static bool DeleteCost(int costId)
+        {
+            using (var connection = GetConnection("costs"))
+            {
+                connection.Open();
+                string query = "DELETE FROM Costs WHERE Id = @Id";
+
+                using (var command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", costId);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0; // Returns true if deletion was successful
                 }
             }
         }
