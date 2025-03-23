@@ -4,13 +4,18 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:finance_manager.Views"
+      xmlns:ScottPlot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="700"
       Title="StatisticsPage">
-
-    <Grid Background="AliceBlue">
-        <Label
-            FontFamily="Arial" FontSize="40"
-            >Statistics</Label>
-    </Grid>
+    
+    <StackPanel Orientation="Vertical" Background="AliceBlue" Width="700" Height="600">
+        <Label FontFamily="Arial" FontSize="35" Height="50">Statistics</Label>
+        <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="1"/>
+        <ScrollViewer Height="500" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Orientation="Vertical" Width="700" Height="550">
+                <ScottPlot:WpfPlot x:Name="plot1" Width="550" Height="470" Margin="0, 20, 0, 0"/>
+            </StackPanel>
+        </ScrollViewer>
+    </StackPanel>
 </Page>

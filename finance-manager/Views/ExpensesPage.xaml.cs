@@ -239,6 +239,8 @@ namespace finance_manager.Views
 
         private void AddExpense_Click(object sender, RoutedEventArgs e)
         {
+            Button button = sender as Button;
+            button.IsEnabled = false;
             addExpenseDockPanel.Visibility = Visibility.Visible;
             ExpenseList.Height -= (addExpenseDockPanel.Height + 2);
         }
@@ -279,6 +281,7 @@ namespace finance_manager.Views
                 ExpenseNameTextBox.Text = "";
                 ExpensePriceTextBox.Text = "";
                 ExpenseTaxTextBox.Text = "";
+                addExpenseButton.IsEnabled = true;
             }
 
             List<Expense> expenses = DatabaseHelper.FetchAllExpenses();
@@ -297,6 +300,8 @@ namespace finance_manager.Views
             ExpenseNameTextBox.Text = "";
             ExpensePriceTextBox.Text = "";
             ExpenseTaxTextBox.Text = "";
+
+            addExpenseButton.IsEnabled = true;
         }
     }
 }

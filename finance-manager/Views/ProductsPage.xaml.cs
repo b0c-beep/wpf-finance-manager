@@ -242,11 +242,14 @@ namespace finance_manager.Views
         {
             addProductDockPanel.Visibility = Visibility.Visible;
             ProductList.Height -= (addProductDockPanel.Height + 2);
+            Button button = sender as Button;
+            button.IsEnabled = false;
         }
 
         private void ModalAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(ProductNameTextBox.Text) ||
+            
+            if (string.IsNullOrWhiteSpace(ProductNameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(ProductPriceTextBox.Text) ||
                 string.IsNullOrWhiteSpace(ProductTaxTextBox.Text))
             {
@@ -280,6 +283,7 @@ namespace finance_manager.Views
                 ProductNameTextBox.Text = "";
                 ProductPriceTextBox.Text = "";
                 ProductTaxTextBox.Text = "";
+                addProductButton.IsEnabled = true;
             }
 
             List<Product> products = DatabaseHelper.FetchAllProducts();
@@ -292,6 +296,7 @@ namespace finance_manager.Views
 
         private void ModalCancelProduct_Click(object sender, RoutedEventArgs e)
         {
+            addProductButton.IsEnabled = true;
             addProductDockPanel.Visibility = Visibility.Collapsed;
             ProductList.Height += (addProductDockPanel.Height + 2);
 
