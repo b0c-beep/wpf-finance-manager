@@ -489,5 +489,31 @@ namespace finance_manager.Data
             }
         }
 
+        public static void ResetAllProfits()
+        {
+            using (var connection = new SQLiteConnection($"Data Source={ProfitsDbPath};Version=3;"))
+            {
+                connection.Open();
+                using (var command = new SQLiteCommand("DELETE FROM Profits", connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+            //Console.WriteLine("All profits have been reset.");
+        }
+
+        public static void ResetAllCosts()
+        {
+            using (var connection = new SQLiteConnection($"Data Source={CostsDbPath};Version=3;"))
+            {
+                connection.Open();
+                using (var command = new SQLiteCommand("DELETE FROM Costs", connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+            //Console.WriteLine("All costs have been reset.");
+        }
+
     }
 }

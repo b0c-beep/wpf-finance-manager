@@ -53,7 +53,11 @@ namespace finance_manager.Views
 
         private void resetMonth()
         {
-
+            ExcelHelper.ExportCurrentMonth();
+            DatabaseHelper.ResetAllProfits();
+            DatabaseHelper.ResetAllCosts();
+            loadProfits(DatabaseHelper.FetchAllProfits());
+            loadCosts(DatabaseHelper.FetchAllCosts());
         }
 
         private void loadProfitOptions(List<Product> products)
