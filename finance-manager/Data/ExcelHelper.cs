@@ -9,13 +9,15 @@ using Microsoft.Win32;
 using finance_manager.Services;
 using System.IO;
 using System.Windows;
+using System.Text.RegularExpressions;
 
 namespace finance_manager.Data
 {
     class ExcelHelper
     {
         private static readonly string AppFolder = Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\"));
-        private static readonly string ResourcesFolder = Path.Combine(AppFolder, "Resources");
+        public static readonly string ResourcesFolder = Path.Combine(AppFolder, "Resources");
+        public static readonly Regex datePattern = new Regex(@"(\d{1,2})-(\d{1,2})-(\d{4})_FinancialReport\.xlsx");
 
         public static void CreateProfitSheet(IXLWorksheet sheet, string sheetTitle, List<Profit> profits)
         {
@@ -173,5 +175,45 @@ namespace finance_manager.Data
             }
             
         }
+
+        public static List<string> loadFiles()
+        {
+            List<string> excelFiles = new List<string>();
+
+            if (Directory.Exists(ResourcesFolder))
+            {
+                // Get all .xlsx and .xls files
+                string[] files = Directory.GetFiles(ResourcesFolder, "*.xlsx");
+
+                // Create a dictionary to store parsed dates
+                Dictionary<string, DateTime> fileDateMap = new Dictionary<string, DateTime>();
+
+
+                foreach (string file in files)
+                {
+                    string fileName = Path.GetFileName(file);
+                    Match match = datePattern.Match(fileName);
+
+                    if (match.Success)
+                    {
+                        int day = int.Parse(match.Groups[1].Value);
+                        int month = int.Parse(match.Groups[2].Value);
+                        int year = int.Parse(match.Groups[3].Value);
+
+                        DateTime fileDate = new DateTime(year, month, day);
+                        fileDateMap[file] = fileDate;
+                    }
+                }
+
+                return fileDateMap.OrderBy(entry => entry.Value).Select(entry => entry.Key).ToList();
+            }
+            else
+            {
+                //Console.WriteLine("Resources folder not found.");
+            }
+
+            return excelFiles;
+        }
+
     }
 }
