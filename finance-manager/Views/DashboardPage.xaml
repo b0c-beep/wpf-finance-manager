@@ -3,13 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      
       xmlns:local="clr-namespace:finance_manager.Views"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="700"
       Title="DashboardPage">
 
-    <StackPanel Orientation="Vertical" Background="AliceBlue" Height="600" Width="700">
-        <Label x:Name="dateLabel" Width="700" Height="30"></Label>
+    <StackPanel Orientation="Vertical" Background="#E3ECF8" Height="600" Width="700">
+        <Label x:Name="dateLabel" Width="700" Height="30" Margin="5, 5, 0, 0"></Label>
         <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="1"/>
         <StackPanel Orientation="Horizontal" Width="700" Height="480">
             <StackPanel x:Name="ProfitStack" Orientation="Vertical" Width="347">

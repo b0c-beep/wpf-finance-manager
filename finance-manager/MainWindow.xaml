@@ -3,13 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
+    
         xmlns:local="clr-namespace:finance_manager"
         mc:Ignorable="d"
         Title="Finance Manager" Height="600" Width="800"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
+      
 >
+
+    <Window.Style>
+        <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}"/>
+    </Window.Style>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -19,20 +25,20 @@
         </Grid.ColumnDefinitions>
 
         <!-- Sidebar -->
-        <StackPanel Background="#8DA7BE" Width="100" Height="585">
-            <Button Width="80" Height="30" Content="Dashboard" 
+        <StackPanel Background="#6F8AB7" Width="100" Height="585">
+            <Button Width="90" Height="35" Content="Dashboard" 
                     Tag="Dashboard" Click="NavigateToPage" 
-                    Margin="0,72,0,0"/>
-            <Button Width="80" Height="30" Content="Products" 
+                    Margin="0,50,0,0"/>
+            <Button Width="90" Height="35" Content="Products" 
                     Tag="Products" Click="NavigateToPage" 
                     Margin="0,72,0,0"/>
-            <Button Width="80" Height="30" Content="Expenses" 
+            <Button Width="90" Height="35" Content="Expenses" 
                     Tag="Expenses" Click="NavigateToPage" 
                     Margin="0,72,0,0"/>
-            <Button Width="80" Height="30" Content="Statistics" 
+            <Button Width="90" Height="35" Content="Statistics" 
                     Tag="Statistics" Click="NavigateToPage"
                     Margin="0,72,0,0"/>
-            <Button Width="80" Height="30" Content="History" 
+            <Button Width="90" Height="35" Content="History" 
                     Tag="History" Click="NavigateToPage" 
                     Margin="0,72,0,0"/>
         </StackPanel>

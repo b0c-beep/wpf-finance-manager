@@ -8,8 +8,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="700"
       Title="StatisticsPage">
-    
-    <StackPanel Orientation="Vertical" Background="AliceBlue" Width="700" Height="600">
+
+    <StackPanel Orientation="Vertical" Background="#E3ECF8" Width="700" Height="600">
         <Label FontFamily="Arial" FontSize="35" Height="50">Statistics</Label>
         <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="1"/>
         <ScrollViewer Height="500" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">

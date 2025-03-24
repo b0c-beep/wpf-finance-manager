@@ -23,7 +23,7 @@
         </Style>
     </Page.Resources>
 
-    <StackPanel Orientation="Vertical" Background="AliceBlue"
+    <StackPanel Orientation="Vertical" Background="#E3ECF8"
             Width="700" Height="600">
         <DockPanel Width="700" Height="100" HorizontalAlignment="Stretch">
             <Label Content="Expenses" FontSize="24" HorizontalAlignment="Left" Margin="20" Height="50" VerticalAlignment="Center"/>
