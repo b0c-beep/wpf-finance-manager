@@ -32,7 +32,13 @@ namespace finance_manager.Views
             {
                 resetMonth();
             }
-            TimeHelper.logDate();
+            else
+            {
+                if (TimeHelper.daysPassed() < 0)
+                {
+                    TimeHelper.logDate();
+                }
+            }
             printDate();
             loadProfitOptions(DatabaseHelper.FetchAllProducts());
             loadCostOptions(DatabaseHelper.FetchAllExpenses());
@@ -58,6 +64,7 @@ namespace finance_manager.Views
             DatabaseHelper.ResetAllCosts();
             loadProfits(DatabaseHelper.FetchAllProfits());
             loadCosts(DatabaseHelper.FetchAllCosts());
+            TimeHelper.logDate();
         }
 
         private void loadProfitOptions(List<Product> products)
