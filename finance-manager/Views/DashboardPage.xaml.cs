@@ -28,13 +28,14 @@ namespace finance_manager.Views
         {
             InitializeComponent();
             TimeHelper.checkFile();
+            TimeHelper.checkEmptyFile();
             if (TimeHelper.didMonthPass())
             {
                 resetMonth();
             }
             else
             {
-                if (TimeHelper.daysPassed() < 0)
+                if(TimeHelper.daysPassed() < 0)
                 {
                     TimeHelper.logDate();
                 }
@@ -52,7 +53,7 @@ namespace finance_manager.Views
 
         private void printDate()
         {
-            dateLabel.Content = "Current situation for " + TimeHelper.getCurrentDate();
+            dateLabel.Content = "Current situation for " + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString();
             dateLabel.FontSize = 18;
             dateLabel.FontFamily = new FontFamily("Arial");
         }

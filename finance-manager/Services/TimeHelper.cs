@@ -4,12 +4,16 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace finance_manager.Services
 {
     class TimeHelper
     {
-        private static readonly string logPath = "./lastLog.txt";
+        
+        private static readonly string AppFolder = Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\"));
+        public static readonly string ServicesFolder = Path.Combine(AppFolder, "Services");
+        private static readonly string logPath = Path.Combine(ServicesFolder, "lastLog.txt");
 
         public static void checkFile()
         {
@@ -17,6 +21,15 @@ namespace finance_manager.Services
             {
                 System.IO.File.Create(logPath).Close();
             }
+        }
+
+        public static void checkEmptyFile()
+        {
+            if (new System.IO.FileInfo(logPath).Length == 0)
+            {
+                logDate();
+            }
+
         }
 
         public static string[] getCurrentDate()
@@ -35,7 +48,7 @@ namespace finance_manager.Services
 
         public static string[] getLastDate()
         {
-            if (System.IO.File.Exists(logPath))
+            if (!System.IO.File.Exists(logPath))
                 return new string[] { "0", "0", "0" };
             else
             {
