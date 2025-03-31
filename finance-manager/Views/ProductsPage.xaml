@@ -13,7 +13,7 @@
             <Setter Property="Background" Value="AliceBlue"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Padding" Value="7"/>
+            <Setter Property="Padding" Value="5"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="BorderBrush" Value="Gray"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -21,14 +21,23 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0, 0, 0, 0"/>
         </Style>
+
+        <Storyboard x:Key="ExpandDockPanel">
+            <DoubleAnimation Storyboard.TargetName="addProductDockPanel" 
+                         Storyboard.TargetProperty="Height"
+                         From="10" To="120"
+                         Duration="0:0:0.3"
+                         AccelerationRatio="1" />
+        </Storyboard>
+
     </Page.Resources>
 
     <StackPanel Orientation="Vertical" Background="#E3ECF8"
                 Width="700" Height="600">
-        <DockPanel Width="700" Height="100" HorizontalAlignment="Stretch">
-            <Label Content="Products" FontSize="24" HorizontalAlignment="Left" Margin="20" Height="50" VerticalAlignment="Center"/>
-            <Button x:Name="addProductButton" HorizontalAlignment="Right" Tag="addProductButton" Content="Add Product" Margin="30"
-                    Click="AddProduct_Click" Height="40" Padding="10"/>
+        <DockPanel Width="700" Height="80" HorizontalAlignment="Stretch">
+            <Label Content="Products" FontSize="24" HorizontalAlignment="Left" Margin="20" Height="35" VerticalAlignment="Center"/>
+            <Button x:Name="addProductButton" HorizontalAlignment="Right" Tag="addProductButton" Content="Add Product" Margin="0, 20, 30, 20"
+                    Click="AddProduct_Click" Height="30"/>
         </DockPanel>
 
         <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="2"/>
@@ -56,9 +65,9 @@
                             <ColumnDefinition Width="25*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="0"/>
-                        <Label Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="1"/>
-                        <Label Content="Tax:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="2"/>
+                        <Label Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15, 5, 0, 0" Grid.Column="0"/>
+                        <Label Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15, 5, 0, 0" Grid.Column="1"/>
+                        <Label Content="Tax:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15, 5, 0, 0" Grid.Column="2"/>
                     </Grid>
                     <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
@@ -70,30 +79,30 @@
 
                         <!-- Product Name TextBox in the first column -->
                         <TextBox x:Name="ProductNameTextBox" Style="{StaticResource ProductTextBoxStyle}" Grid.Column="0"
-                                 Width="300"/>
+                                 Width="300" HorizontalAlignment="Left" Margin="15, 0, 0, 0"/>
 
                         <!-- Product Price TextBox in the second column -->
                         <TextBox x:Name="ProductPriceTextBox" Style="{StaticResource ProductTextBoxStyle}" Grid.Column="1"
-                                 Width="130"/>
+                                 Width="150" HorizontalAlignment="Left" Margin="15, 0, 0, 0"/>
 
                         <!-- Product Tax TextBox in the third column -->
                         <TextBox x:Name="ProductTaxTextBox" Style="{StaticResource ProductTextBoxStyle}" Grid.Column="2"
-                                 Width="130"/>
+                                 Width="130" HorizontalAlignment="Left" Margin="15, 0, 0, 0"/>
                     </Grid>
                     
                     <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Button Content="Add Product" HorizontalAlignment="Left" Margin="25, 0, 0, 0" Padding="10" Width="100"
+                        <Button Content="Add Product" HorizontalAlignment="Left" Margin="15, 0, 0, 0" Padding="10" Width="100"
                                 Click="ModalAddProduct_Click"/>
-                        <Button Content="Cancel" HorizontalAlignment="Right" Margin="0, 0, 23, 0" Padding="10" Width="100"
+                        <Button Content="Cancel" HorizontalAlignment="Right" Margin="0, 0, 27, 0" Padding="10" Width="100"
                                 Click="ModalCancelProduct_Click"/>
                     </Grid>
                 </Grid>
             </Border>
         </DockPanel>
 
-        <StackPanel x:Name="LabelStack" Orientation="Horizontal" HorizontalAlignment="Stretch" Width="700">
+        <StackPanel x:Name="LabelStack" Orientation="Horizontal" HorizontalAlignment="Stretch" Width="700" Height="20">
             <Label Width="45" Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25, 0, 0, 0" Grid.Column="0"/>
-            <Label Width="40" Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="165, 0, 0, 0" Grid.Column="1"/>
+            <Label Width="40" Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="175, 0, 0, 0" Grid.Column="1"/>
             <Label Width="30" Content="Tax:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="65, 0, 0, 0" Grid.Column="2"/>
         </StackPanel>
         <ScrollViewer Height="450" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">

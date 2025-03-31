@@ -62,7 +62,9 @@ namespace finance_manager.Views
 
 
             plot1.Plot.Clear();
-            
+
+           
+
             var bars = plot1.Plot.Add.Bars(values);
 
             plot1.Plot.Axes.Margins(bottom: 0);
@@ -72,19 +74,23 @@ namespace finance_manager.Views
                 bar.Label = bar.Value.ToString();
             }
 
-            bars.Bars[0].FillColor = ScottPlot.Colors.Green;
-            bars.Bars[1].FillColor = ScottPlot.Colors.Red;
-            bars.Bars[2].FillColor = ScottPlot.Colors.Blue;
+            bars.Bars[0].FillColor = ScottPlot.Colors.DarkGreen;
+            bars.Bars[1].FillColor = ScottPlot.Colors.Crimson;
+            bars.Bars[2].FillColor = ScottPlot.Colors.DodgerBlue;
 
             bars.ValueLabelStyle.Bold = true;
             bars.ValueLabelStyle.FontSize = 16;
 
             Tick[] ticks =
             {
-                new(0, "Profit"),
-                new(1, "Cost"),
-                new(2, "Tax"),
+                new(0, "Profits"),
+                new(1, "Costs"),
+                new(2, "Taxes"),
             };
+
+            plot1.Plot.FigureBackground.Color = ScottPlot.Color.FromHex("#E3ECF8");
+            plot1.Plot.DataBackground.Color = ScottPlot.Color.FromHex("#E3ECF8");
+            plot1.Plot.Grid.MajorLineColor = ScottPlot.Color.FromHex("#E3ECF8");
 
             plot1.Plot.Axes.Bottom.TickGenerator = new ScottPlot.TickGenerators.NumericManual(ticks);
             plot1.Plot.Axes.AutoScale();

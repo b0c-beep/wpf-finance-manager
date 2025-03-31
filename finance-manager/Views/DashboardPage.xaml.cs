@@ -138,6 +138,12 @@ namespace finance_manager.Views
             profitList.Children.Clear();
             foreach (Profit profit in profits)
             {
+                Border border = new Border();
+                border.CornerRadius = new CornerRadius(10); // Set border radius
+                //border.Background = new SolidColorBrush(Color.FromRgb(111, 138, 183)); // Set background color
+                border.Padding = new Thickness(0);
+                border.Margin = new Thickness(2, 5, 2, 2);
+
                 // Create a StackPanel for each product
                 StackPanel profitPanel = new StackPanel
                 {
@@ -145,15 +151,20 @@ namespace finance_manager.Views
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     Width = 345,
                     Height = 40,
-                    Margin = new Thickness(5)
+                    Background = Brushes.Transparent,
+                    Opacity = 1,
+                    Margin = new Thickness(5, 5, 5, 5)
                 };
+
+                profitList.Children.Add(border);
+                border.Child = profitPanel;
 
                 // Create a TextBlock for product name
                 TextBlock nameTextBlock = new TextBlock
                 {
                     Text = profit.Name,
                     VerticalAlignment = VerticalAlignment.Center,
-                    Width = 190
+                    Width = 180
 
                 };
                 nameTextBlock.Margin = new Thickness(5);
@@ -163,14 +174,14 @@ namespace finance_manager.Views
                 {
                     Text = profit.Price.ToString(),
                     VerticalAlignment = VerticalAlignment.Center,
-                    Width = 80
+                    Width = 70
                 };
 
                 // Create Delete button
                 Button deleteButton = new Button
                 {
                     Content = "X",
-                    Margin = new Thickness(5),
+                    Margin = new Thickness(12, 5, 5, 5),
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     Width = 30,
@@ -186,7 +197,7 @@ namespace finance_manager.Views
                 profitPanel.Children.Add(deleteButton);
 
 
-                profitList.Children.Add(profitPanel);
+                //profitList.Children.Add(profitPanel);
             }
         }
 
@@ -196,6 +207,12 @@ namespace finance_manager.Views
             costList.Children.Clear();
             foreach (Cost cost in costs)
             {
+                Border border = new Border();
+                border.CornerRadius = new CornerRadius(10); // Set border radius
+                //border.Background = new SolidColorBrush(Color.FromRgb(111, 138, 183)); // Set background color
+                border.Padding = new Thickness(0);
+                border.Margin = new Thickness(2, 5, 2, 2);
+
                 // Create a StackPanel for each product
                 StackPanel costPanel = new StackPanel
                 {
@@ -203,15 +220,20 @@ namespace finance_manager.Views
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     Width = 345,
                     Height = 40,
-                    Margin = new Thickness(5)
+                    Background = Brushes.Transparent,
+                    Opacity = 1,
+                    Margin = new Thickness(5, 5, 5, 5)
                 };
+
+                costList.Children.Add(border);
+                border.Child = costPanel;
 
                 // Create a TextBlock for product name
                 TextBlock nameTextBlock = new TextBlock
                 {
                     Text = cost.Name,
                     VerticalAlignment = VerticalAlignment.Center,
-                    Width = 190
+                    Width = 180
 
                 };
                 nameTextBlock.Margin = new Thickness(5);
@@ -221,14 +243,14 @@ namespace finance_manager.Views
                 {
                     Text = cost.Price.ToString(),
                     VerticalAlignment = VerticalAlignment.Center,
-                    Width = 80
+                    Width = 70
                 };
 
                 // Create Delete button
                 Button deleteButton = new Button
                 {
                     Content = "X",
-                    Margin = new Thickness(5),
+                    Margin = new Thickness(12, 5, 5, 5),
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     Width = 30,
@@ -244,7 +266,7 @@ namespace finance_manager.Views
                 costPanel.Children.Add(deleteButton);
 
 
-                costList.Children.Add(costPanel);
+                //costList.Children.Add(costPanel);
             }
         }
 

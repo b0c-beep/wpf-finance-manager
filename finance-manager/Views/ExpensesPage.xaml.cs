@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -125,9 +126,9 @@ namespace finance_manager.Views
             if (nameTextBlock == null || priceTextBlock == null || taxTextBlock == null || deleteButton == null) return;
 
             // Convert to TextBoxes
-            TextBox nameTextBox = new TextBox { Text = nameTextBlock.Text, Width = 200, Height = 20, Margin = nameTextBlock.Margin };
-            TextBox priceTextBox = new TextBox { Text = priceTextBlock.Text, Width = 100, Height = 20, Margin = priceTextBlock.Margin };
-            TextBox taxTextBox = new TextBox { Text = taxTextBlock.Text.Replace("%", ""), Width = 100, Height = 20, Margin = taxTextBlock.Margin };
+            TextBox nameTextBox = new TextBox { Text = nameTextBlock.Text, Width = 200, Height = 30, Margin = new Thickness(15, 0, 0, 0)};
+            TextBox priceTextBox = new TextBox { Text = priceTextBlock.Text, Width = 100, Height = 30, Margin = new Thickness(15, 0, 0, 0)};
+            TextBox taxTextBox = new TextBox { Text = taxTextBlock.Text.Replace("%", ""), Width = 100, Height = 30, Margin = new Thickness(10, 0, 0, 0)};
 
             // Get indexes
             int nameIndex = expensePanel.Children.IndexOf(nameTextBlock);
@@ -198,9 +199,9 @@ namespace finance_manager.Views
 
 
             // Convert back to TextBlocks
-            TextBlock nameTextBlock = new TextBlock { Text = newName, Width = 200, VerticalAlignment = VerticalAlignment.Center, Margin = nameTextBox.Margin };
-            TextBlock priceTextBlock = new TextBlock { Text = newPrice.ToString(), Width = 100, VerticalAlignment = VerticalAlignment.Center, Margin = priceTextBox.Margin };
-            TextBlock taxTextBlock = new TextBlock { Text = formattedTax, Width = 100, VerticalAlignment = VerticalAlignment.Center, Margin = taxTextBox.Margin };
+            TextBlock nameTextBlock = new TextBlock { Text = newName, Width = 200, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(20)};
+            TextBlock priceTextBlock = new TextBlock { Text = newPrice.ToString(), Width = 100, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0)};
+            TextBlock taxTextBlock = new TextBlock { Text = formattedTax, Width = 100, VerticalAlignment = VerticalAlignment.Center, Margin = new Thickness(0)};
 
             // Get indexes
             int nameIndex = expensePanel.Children.IndexOf(nameTextBox);
@@ -242,6 +243,8 @@ namespace finance_manager.Views
             Button button = sender as Button;
             button.IsEnabled = false;
             addExpenseDockPanel.Visibility = Visibility.Visible;
+            Storyboard sb = (Storyboard)FindResource("ExpandDockPanel");
+            sb.Begin();
             ExpenseList.Height -= (addExpenseDockPanel.Height + 2);
         }
 

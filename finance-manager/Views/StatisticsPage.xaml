@@ -10,11 +10,11 @@
       Title="StatisticsPage">
 
     <StackPanel Orientation="Vertical" Background="#E3ECF8" Width="700" Height="600">
-        <Label FontFamily="Arial" FontSize="35" Height="50">Statistics</Label>
+        <Label Margin="10, 10, 0, 0" FontFamily="Arial" FontSize="35" Height="50">Statistics</Label>
         <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="1"/>
         <ScrollViewer Height="500" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel Orientation="Vertical" Width="700" Height="550">
-                <ScottPlot:WpfPlot x:Name="plot1" Width="550" Height="470" Margin="0, 20, 0, 0"/>
+                <ScottPlot:WpfPlot x:Name="plot1" Width="550" Height="470" Margin="-15, 20, 0, 0"/>
             </StackPanel>
         </ScrollViewer>
     </StackPanel>

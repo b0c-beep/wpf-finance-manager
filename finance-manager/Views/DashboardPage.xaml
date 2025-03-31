@@ -10,11 +10,12 @@
       Title="DashboardPage">
 
     <StackPanel Orientation="Vertical" Background="#E3ECF8" Height="600" Width="700">
-        <Label x:Name="dateLabel" Width="700" Height="30" Margin="5, 5, 0, 0"></Label>
+        <Label x:Name="dateLabel" Width="700" Height="30" Margin="10, 10, 0, 0" Foreground="Black"
+               ></Label>
         <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="1"/>
-        <StackPanel Orientation="Horizontal" Width="700" Height="480">
-            <StackPanel x:Name="ProfitStack" Orientation="Vertical" Width="347">
-                <Label Height="25" HorizontalAlignment="Center">Profits</Label>
+        <StackPanel Orientation="Horizontal" Width="700" Height="470">
+            <StackPanel x:Name="ProfitStack" Orientation="Vertical" Width="343">
+                <Label Height="20" HorizontalAlignment="Center">Profits</Label>
                 <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
                 <StackPanel x:Name="addProfitPanel" Orientation="Horizontal" Height="40">
                     <ComboBox x:Name="profitDropDown" Width="250" Height="25" Margin="5, 0, 10, 0">
@@ -25,14 +26,14 @@
                 </StackPanel>
                 <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
                 <ScrollViewer Height="400" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                    <StackPanel x:Name="profitList" Orientation="Vertical" Width="347" Height="410">
+                    <StackPanel x:Name="profitList" Orientation="Vertical" Width="347" Height="400">
 
                     </StackPanel>
                 </ScrollViewer>
             </StackPanel>
             <Line Stroke="Black" X1="0" X2="0" Y1="0" Y2="500" StrokeThickness="1"/>
             <StackPanel x:Name="CostStack" Orientation="Vertical" Width="347">
-                <Label Height="25" HorizontalAlignment="Center">Costs</Label>
+                <Label Height="20" HorizontalAlignment="Center">Costs</Label>
                 <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
                 <StackPanel x:Name="addCostsPanel" Orientation="Horizontal" Height="40">
                     <ComboBox x:Name="costDropDown" Width="250" Height="25" Margin="5, 0, 10, 0">
@@ -43,7 +44,7 @@
                 </StackPanel>
                 <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
                 <ScrollViewer Height="400" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                    <StackPanel x:Name="costList" Orientation="Vertical" Width="347" Height="410">
+                    <StackPanel x:Name="costList" Orientation="Vertical" Width="347" Height="400">
 
                     </StackPanel>
                 </ScrollViewer>
@@ -51,7 +52,7 @@
         </StackPanel>
         <Line Stroke="Black" X1="0" X2="700" Y1="0" Y2="0" StrokeThickness="1"/>
         <StackPanel x:Name="footerStack" Orientation="Horizontal" Height="70">
-            <Button x:Name="excelExportButton" Width="100" Height="30" Margin="20, 0, 0, 20"
+            <Button x:Name="excelExportButton" Width="100" Height="25" Margin="15, 0, 0, 20"
                     Click="exportToExcel_Click">Export to Excel</Button>
         </StackPanel>
     </StackPanel>
