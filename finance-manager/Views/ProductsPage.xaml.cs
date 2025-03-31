@@ -34,9 +34,10 @@ namespace finance_manager.Views
         private void LoadProducts(List<Product> products)
         {
             ProductList.Children.Clear();
-
+         
             foreach (var product in products)
             {
+               
                 // Create a StackPanel for each product
                 StackPanel productPanel = new StackPanel
                 {
@@ -107,6 +108,7 @@ namespace finance_manager.Views
                 // Add the product panel to the ProductList StackPanel
                 ProductList.Children.Add(productPanel);
             }
+            
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -288,6 +290,8 @@ namespace finance_manager.Views
                 ProductPriceTextBox.Text = "";
                 ProductTaxTextBox.Text = "";
                 addProductButton.IsEnabled = true;
+
+                
             }
 
             List<Product> products = DatabaseHelper.FetchAllProducts();

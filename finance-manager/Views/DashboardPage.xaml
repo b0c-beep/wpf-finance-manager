@@ -26,7 +26,7 @@
                 </StackPanel>
                 <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
                 <ScrollViewer Height="400" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                    <StackPanel x:Name="profitList" Orientation="Vertical" Width="347" Height="400">
+                    <StackPanel x:Name="profitList" Orientation="Vertical" Width="347">
 
                     </StackPanel>
                 </ScrollViewer>
@@ -44,7 +44,7 @@
                 </StackPanel>
                 <Line Stroke="Black" X1="0" X2="350" Y1="0" Y2="0" StrokeThickness="0.5"/>
                 <ScrollViewer Height="400" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                    <StackPanel x:Name="costList" Orientation="Vertical" Width="347" Height="400">
+                    <StackPanel x:Name="costList" Orientation="Vertical" Width="347">
 
                     </StackPanel>
                 </ScrollViewer>

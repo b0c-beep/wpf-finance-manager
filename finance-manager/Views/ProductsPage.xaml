@@ -105,8 +105,8 @@
             <Label Width="40" Content="Price:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="175, 0, 0, 0" Grid.Column="1"/>
             <Label Width="30" Content="Tax:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="65, 0, 0, 0" Grid.Column="2"/>
         </StackPanel>
-        <ScrollViewer Height="450" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <VirtualizingStackPanel x:Name="ProductList" Orientation="Vertical" Width="700" Height="500">
+        <ScrollViewer x:Name="ScrollProducts" Height="440" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <VirtualizingStackPanel x:Name="ProductList" Orientation="Vertical" Width="700">
             </VirtualizingStackPanel>
         </ScrollViewer>
     </StackPanel>
