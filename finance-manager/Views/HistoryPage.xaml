@@ -16,7 +16,7 @@
         </StackPanel>
         <Line Stroke="Black" X1="0" X2="690" Y1="0" Y2="0" StrokeThickness="1"/>
         <ScrollViewer Height="500" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel x:Name="historyList" Orientation="Vertical" Width="690" Height="500">
+            <StackPanel x:Name="historyList" Orientation="Vertical" Width="690">
                 <!-- History items will be added here -->
             </StackPanel>
         </ScrollViewer>

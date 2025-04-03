@@ -2,5 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
+    <_LastSelectedProfileId>D:\MVS\finance-manager\finance-manager\Properties\PublishProfiles\FolderProfile2.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
 </Project>

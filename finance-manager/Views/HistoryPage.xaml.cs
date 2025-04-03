@@ -61,16 +61,16 @@ namespace finance_manager.Views
                 {
                     Text = displayText,
                     VerticalAlignment = VerticalAlignment.Center,
-                    Width = 550
+                    Width = 520
                 };
 
                 // Download Button
                 Button downloadButton = new Button
                 {
                     Content = "Download",
-                    Width = 60,
+                    Width = 100,
                     Height = 30,
-                    Margin = new Thickness(10, 0, 0, 0),
+                    Margin = new Thickness(5, 0, 0, 0),
                     Tag = file
                 };
                 downloadButton.Click += downloadFileButton_Click;
